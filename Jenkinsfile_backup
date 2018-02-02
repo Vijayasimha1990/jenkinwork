@@ -28,8 +28,8 @@ def pword
         stage('Collect info') {
             checkout scm
             branch = env.BRANCH_NAME
-            commit = gitUtils.getCommitId()
-            repo = gitUtils.getOriginUrl()
+            commit = git.getCommitId()
+            repo = git.getOriginUrl()
         }
 		stage('backup'){
         //we wait two minutes to make sure that the service is up and running
