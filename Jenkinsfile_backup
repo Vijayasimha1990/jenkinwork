@@ -1,7 +1,7 @@
 #!groovy
 
 // pipeline config
-def javaAgent = 'build && java'
+//def javaAgent = 'build && java'
 
 // project config
 def commit
@@ -51,4 +51,4 @@ node(javaAgent) {
     } catch (def e) {
         currentBuild.result = 'FAILURE'
     }
-}
+//}
