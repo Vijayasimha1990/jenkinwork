@@ -35,7 +35,7 @@ node(javaAgent) {
        sleep 120
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd") ;
     			def getDate=df.format(new Date());
-			def NFSPATH= "D:\couchbasebackup\couchbase_backup_${getDate}"
+			def NFSPATH= "D:/couchbasebackup/couchbase_backup_${getDate}"
     			//Fetching credentials for respective environment
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'couchbase',
                 		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
