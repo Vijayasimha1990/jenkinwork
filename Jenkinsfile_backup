@@ -9,13 +9,6 @@ def branch
 def repo
 def uname
 def pword
-for (aSlave in hudson.model.Hudson.instance.slaves) {
-  if (aSlave.name == 'NAME OF NODE TO DELETE') {
-  	println('Shutting down node!!!!');
- 	aSlave.getComputer().setTemporarilyOffline(true,null);
- 	aSlave.getComputer().doDoDelete();
-  }
-}
 // pipeline
 node(javaAgent) {
 		properties([
