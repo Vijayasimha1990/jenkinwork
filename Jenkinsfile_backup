@@ -31,7 +31,7 @@ node(javaAgent) {
         }
 		stage('backup'){
         //we wait two minutes to make sure that the service is up and running
-       // sleep 120
+       sleep 120
 			steps{
 			//Fetching credentials for respective environment
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'couchbase',
