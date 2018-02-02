@@ -1,7 +1,7 @@
 #!groovy
 
 // pipeline config
-def javaAgent = 'build && java'
+def javaAgent = 'master'
 
 // project config
 def commit
