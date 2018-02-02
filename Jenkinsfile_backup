@@ -11,7 +11,7 @@ def uname
 def pword
 
 // pipeline
-node(javaAgent) {
+//node(javaAgent) {
 
     properties([
             [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator',daysToKeepStr: '1', numToKeepStr: '4']],
