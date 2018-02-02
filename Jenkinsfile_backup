@@ -37,10 +37,9 @@ node(javaAgent) {
             commit = git.getCommitId()
             repo = git.getOriginUrl()
         }
-		stage('backup'){
+	stage('backup'){
         //we wait two minutes to make sure that the service is up and running
-       sleep 120
-			}
+        sleep 120
 			if (params.couchbaseBackup == 'test'){
 				pcCouchbase.backup environment:params.couchbaseBackup, deployToMachine: deployMaster,username : uname, password :pword
 			}
