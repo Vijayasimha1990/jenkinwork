@@ -1,5 +1,6 @@
 #!groovy
-
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 // pipeline config
 def javaAgent = 'master'
 
@@ -32,16 +33,19 @@ node(javaAgent) {
 		stage('backup'){
         //we wait two minutes to make sure that the service is up and running
        sleep 120
-			steps{
-			//Fetching credentials for respective environment
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd") ;
+    			def getDate=df.format(new Date());
+			def NFSPATH= "D:\couchbasebackup\couchbase_backup_${getDate}"
+    			//Fetching credentials for respective environment
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'couchbase',
-                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 					uname = env.USERNAME
 					pword = env.PASSWORD
-			}
+			
 			}
 			if (params.couchbaseBackup == 'test'){
-				pcCouchbase.backup environment:params.couchbaseBackup, deployToMachine: deployMaster,username : uname, password :pword
+				def backupcmd = "cbbackup http://localhost:8091 ${NFSPATH} -u ${uname} -p ${pword} -m full --single-node"
+				backupcmd.execute()
 			}
 			if (params.couchbaseBackup == 'production'){
 				pcCouchbase.backup environment:params.couchbaseBackup, deployToMachine: deployMaster,username : uname, password :pword
